@@ -19,29 +19,34 @@ import { loginUser } from '../apis/userApi'
 */
 const Login = () => {
   //회원이 입력한 로그인 정보를 저장하는 변수
-  const [loginaData, setLoginData] = useState({
+  const [loginData, setLoginData] = useState({
     userId : '',
     userPw : ''
   });
 
   const changeLoginData = (e) => {
     setLoginData({
-      ...loginaData,
+      ...loginData,
       [e.target.name] : e.target.value
     });
   }
   //로그인한 정보를 조회
   const login = () =>{
-    loginUser(loginaData)
+    loginUser(loginData)
     .then(res=>{
       console.log(res.data);
       //자바에서 null데이터가 넘어오면 ''(빈문자)로 받는다.
       if(res.data === ''){
-        alert('로그인 실패');
+        alert('로그인 실패');//아이디와 비번이 일치하는 회원이 없네, 까지
       }
       else{
-        alert('로그인 성공');
-      }
+        alert('로그인 성공');//로그인 가능한 상태
+        //로그인에 성공하면 
+        //sessionStorage에 로그인하는 회원의 아이디, 이름 권한 정보를 저장한다.
+        sessionStorage.setItem('userId', res.data.userId);
+        sessionStorage.setItem('userName', res.data.userName);
+        sessionStorage.setItem('userRoll', res.data.userRoll);
+      } 
 
     })
     .catch(error=>console.log(error));
@@ -56,7 +61,7 @@ const Login = () => {
           <p>아이디</p>
           <ShopInput 
           name='userId'
-          values={loginaData.userId}
+          values={loginData.userId}
           onChange={e=>changeLoginData(e)}
           size='wide'/>
         </div>
@@ -64,7 +69,7 @@ const Login = () => {
           <p>비밀번호</p>
           <ShopInput size='wide' 
           name='userPw'
-          values={loginaData.userPw}
+          values={loginData.userPw}
           onChange={e=>changeLoginData(e)}
           type='password'/>
         </div>
