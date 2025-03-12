@@ -1,0 +1,41 @@
+.header_container{
+  width: 100%;
+  margin-bottom: 12px;
+}
+.login_div{
+  text-align: right;
+  background-color: rgb(240, 238, 238);
+  color: cadetblue;
+  font-size: 1.1rem;
+}
+.login_div > span{
+  margin-left: 10px;
+}
+.banner_div > img{
+  width: 100%;
+  display: block;
+}
+.banner_div {
+  position: relative;
+}
+.banner_div > p{
+  position: absolute;
+  top: 40%;
+  left: 4%;
+  font-size: 2.5rem;
+  font-weight: 900;
+  letter-spacing: 8px;
+  text-shadow: 3px 4px 5px lightgray;
+}
+.menu_div{
+  padding: 8px;
+  border-bottom: 1px solid lightgray;
+}
+.menu_ul{
+  display: flex;
+  margin-left: 10px;
+  gap: 16px;
+}
+.menu_ul{
+  color: gray;
+}
