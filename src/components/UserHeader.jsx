@@ -1,19 +1,36 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './UserHeader.module.css'
 import { Link } from 'react-router-dom'
 
-export const UserHeader = () => {
+export const UserHeader = ({loginInfo, setLoginInfo}) => {
+  
   return (
     
     <div className={styles.header_container}>
 
       <div className={styles.login_div}>
-        <span>
-          <Link to={'/login'}>LOGIN</Link>
-        </span>
-        <span>
-          <Link to={'/users'}>JOIN</Link>
-          </span>
+        {//삼항연산자도 조건이 맞으면 리턴하므로 스판태그를 감싸는 부모태그가 있어야 된다.<></>
+          loginInfo == null
+          ? 
+          <>
+            <span>
+            <Link to={'/login'}>LOGIN</Link>
+            </span>
+            <span>
+            <Link to={'/users'}>JOIN</Link>
+            </span>
+          </>
+          : 
+          <>
+            <span>{loginInfo.userId}님 반갑습니다.</span>
+            <span onClick={()=>{
+              sessionStorage.removeItem('loginInfo')
+              setLoginInfo(null);
+            }}>LOGOUT</span>
+          </>
+        }
+
+        
         </div>
       <div className={styles.banner_div}>
         <img src="/book_banner.PNG" />
