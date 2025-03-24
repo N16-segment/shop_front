@@ -17,6 +17,7 @@ import State변경함수흐름2 from './components/practice/State변경함수흐
 import State변경함수흐름3 from './components/practice/State변경함수흐름3'
 import StorageTest from './components/practice/StorageTest'
 import { useEffect, useState } from 'react'
+import UploadTest from './components/practice/UploadTest'
 
 function App() {
    //로그인 정보를 저장할 state변수
@@ -74,7 +75,7 @@ function App() {
       click={ ()=>console.log(5)}/>
 
       <ShopButton size='large'/> */}
-
+     {/* <UploadTest/> */}
      <Routes>
 
       {/* 유저가 접속하는 페이지 */}
@@ -101,7 +102,8 @@ function App() {
       
 
       {/* 관리자가 접속하는 페이지 */}
-      <Route path='/admin' element={ <AdminLayout />}>
+      <Route path='/admin' element={ <AdminLayout loginInfo={loginInfo}
+      setLoginInfo={setLoginInfo}/>}>
 
 
         {/* 상품등록 */}

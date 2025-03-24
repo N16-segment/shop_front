@@ -62,7 +62,10 @@ const Login = ({setLoginInfo}) => {
        
         sessionStorage.setItem('loginInfo',  JSON.stringify(loginInfo));
         setLoginInfo(loginInfo);
-        nav('/')
+
+        //로그인한 유저의 권한에 따라 이동할 페이지를 지정
+        //일반 회원 : 상품 목록 페이지, 관리자 : 상품 등록 페이지
+        nav(loginInfo.userRoll === 'USER' ? '/' : '/admin/reg-item');
       } 
 
     })

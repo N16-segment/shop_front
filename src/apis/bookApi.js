@@ -49,7 +49,10 @@ export const insertCategory = (categoryData)=>{
  */
 
 export const insertBook = (bookData)=>{
-  const respanse = axios.post('/api/books', bookData);
-   
+  //자바로 데이터를 전달할 대 문자뿐만 아니라 파일 데이터도 가져간다는 것을 설정
+  //첨부파일 할 때 무조건 붙여줘야하는 규칙이다.
+  const fileConfig = { header: { "Content-Type": "multipart/form-data" } };
+
+  const respanse = axios.post('/api/books', bookData, fileConfig);
   return respanse;
 }
